@@ -1,0 +1,23 @@
+①
+<エラー文>
+postgresのパスワードの認証に失敗
+
+<対処>
+パスワードが正しく入力されているか確認
+
+②
+<エラー文>
+Hikaripool初期化中に例外発生 データーベースが存在しない、繋がっていない
+メタデータをクエリするための接続を取得できない（警告）
+postgresql受信エラー
+PA EntityManagerFactory の初期化に失敗しました: 要求されたサービスを作成できません
+コンテキストの初期化中に例外が発生（警告）
+
+entityManagerFactory」を持つ Bean の作成エラー : init メソッドの呼び出しに失敗しました。 ネストされた例外は
+org.hibernate.service.spi.ServiceException: 要求されたサービスを作成できません
+
+[org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]
+で定義された名前「entityManagerFactory」を持つ Bean の作成エラー: init メソッドの呼び出しに失敗しました。
+
+<対処>
+誤字確認、データーベース記述確認

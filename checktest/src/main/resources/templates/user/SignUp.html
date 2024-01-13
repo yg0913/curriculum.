@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>新規登録</title>
+	<link rel="stylesheet" th:href="@{/css/SignUp.css}">
+</head>
+<body>
+	<div class="container">
+		<!--<div th:if="${validationError}" th:each="error : ${validationError}">
+			<label class="text-danger" th:text="${error}"></label>
+		</div>-->
+		<h1>ユーザー新規登録</h1>
+		<form th:action="@{/user/SignUp}" th:object="${signUpEntity}" th:method="post">
+			<div class="form-group">
+				<label for="id">ユーザーID:</label>
+				<input type="text" th:field="*{userid}" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="Email">Email:</label>
+				<input type="email" th:field="*{email}" class="form-control">
+			</div>
+			<div class="form-group">
+				<label for="username">名前:</label>
+				<input type="text" th:field="*{username}" class="form-control">
+			</div>
+			<button class="btn btn-primary" type="submit">申請</button>
+		</form>
+		</div>
+</body>
+
+</html>

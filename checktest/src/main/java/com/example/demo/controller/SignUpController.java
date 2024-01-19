@@ -1,9 +1,17 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.dto.SignUpRequest;
 import com.example.demo.service.SignUpService;
@@ -49,20 +57,20 @@ public class SignUpController {
 		 * @param model Model
 		 * @return ユーザー一覧画面
 		 */
-//	  @PostMapping("expense/complete")
-//		public String create(@ModelAttribute @Validated SignUpRequest signUpRequest, BindingResult result, Model model) {
-//
-//			if (result.hasErrors()) {
-//				// 入力チェックエラーの場合
-//				List<String> errorList = new ArrayList<String>();
-//				for (ObjectError error : result.getAllErrors()) {
-//					errorList.add(error.getDefaultMessage());
-//				}
-//				model.addAttribute("validationError", errorList);
-//				return "expense/add";
-//			}
+	  @PostMapping("user/SignUp")
+		public String create(@ModelAttribute @Validated SignUpRequest signUpRequest, BindingResult result, Model model) {
+
+			if (result.hasErrors()) {
+				// 入力チェックエラーの場合
+				List<String> errorList = new ArrayList<String>();
+				for (ObjectError error : result.getAllErrors()) {
+					errorList.add(error.getDefaultMessage());
+				}
+				model.addAttribute("validationError", errorList);
+				return "/";
+			}
 //			// 経費情報の登録
-////			signUpService.update(signUpRequest);
-////			return "expense/complete";
-//	  }
+			signUpService.update(signUpRequest);
+			return "/";
+	  }
 }

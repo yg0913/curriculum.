@@ -34,11 +34,12 @@ public class SignUpController {
 	   * @param  model Model
 	   * @return  ユーザー情報一覧画面のHTMLのパス
 	   */
-//	  @GetMapping(value = "/user/list")
+//	  @GetMapping(value = "/user/mypage")
 //	  public String displayList(Model model) {
 //	    List<SignUpEntity> userlist = signUpService.searchAll();
-//	    model.addAttribute("userlist", userlist);
+//	    model.addAttribute(attributeName:"userlist", userlist);
 //	    return "user/SignUp";
+//	  }
 	  /**
 	   * ユーザー新規登録画面を表示
 	   *
@@ -72,5 +73,5 @@ public class SignUpController {
 //			// 経費情報の登録
 			signUpService.update(signUpRequest);
 			return "/";
-	  }
+	  	}
 }

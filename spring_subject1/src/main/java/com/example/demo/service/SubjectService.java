@@ -37,4 +37,22 @@ public class SubjectService {
 		subject.setSubject(subjectRequest.getSubject());
 		subjectRepository.save(subject);
 	}
+	
+	/**
+	 * 科目情報 主キー検索
+	 * @return  検索結果
+	 */
+	public SubjectEntity findById(Integer id) {
+		return subjectRepository.getOne(id);
+	}
+	
+	/**
+	 * 科目情報 更新
+	 * @param  subject 科目情報
+	 */
+	public void update(SubjectForm subjectUpdateRequest) {
+		SubjectEntity subject = findById(subjectUpdateRequest.getId());
+		subject.setSubject(subjectUpdateRequest.getSubject());
+		subjectRepository.save(subject);
+	}
 }

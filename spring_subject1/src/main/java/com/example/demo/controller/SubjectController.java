@@ -11,9 +11,12 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.SubjectEntity;
+import com.example.demo.form.SubjectForm;
 import com.example.demo.service.SubjectService;
 
 /**
@@ -33,7 +36,7 @@ public class SubjectController {
 	 * @param  model Model
 	 * @return  科目情報一覧画面のHTML
 	 */
-	@GetMapping("/subject/list")
+	@RequestMapping("/subject/list")
 	public String subjectList(Model model) {
 		List<SubjectEntity> subjectlist = subjectService.searchAll();
 		model.addAttribute("subjectlist", subjectlist);
@@ -72,4 +75,54 @@ public class SubjectController {
 		subjectService.create(subjectRequest);
 		return "redirect:/subject/list";
 	}	
+	
+	/**
+	 * 科目情報詳細画面を表示
+	 * @param  id 表示する科目ID
+	 * @param  model Model
+	 * @return  科目情報詳細画面
+	 */
+	@GetMapping("/subject/{id}")
+	public String userDetail(@PathVariable  Integer id, Model model) {
+		SubjectEntity subject = subjectService.findById(id);
+		model.addAttribute("subject", subject);
+		return "subject/detail";
+	}
+	
+	/**
+	 * 科目編集画面を表示
+	 * @param  id 表示する科目ID
+	 * @param  model Model
+	 * @return  科目編集画面
+	 */
+	@GetMapping("/subject/{id}/edit")
+	public String userEdit(@PathVariable  Integer id, Model model) {
+		SubjectEntity subject = subjectService.findById(id);
+		SubjectForm subjectUpdateRequest = new SubjectForm();
+		subjectUpdateRequest.setId(subject.getId());
+		subjectUpdateRequest.setSubject(subject.getSubject());
+		model.addAttribute("subjectUpdateRequest", subjectUpdateRequest);
+		return "subject/edit";
+	}
+	
+	/**
+	 * 科目更新
+	 * @param  userRequest リクエストデータ
+	 * @param  model Model
+	 * @return  科目情報詳細画面
+	 */
+	@PostMapping("/subject/update")
+	public String subjectUpdate(@Validated  @ModelAttribute  SubjectForm subjectUpdateRequest, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			List<String> errorList = new ArrayList<String>();
+			for (ObjectError error : result.getAllErrors()) {
+				errorList.add(error.getDefaultMessage());
+			}
+			model.addAttribute("validationError", errorList);
+			return "subject/edit";
+		}
+		// 科目情報の更新
+		subjectService.update(subjectUpdateRequest);
+		return String.format("redirect:/subject/%d", subjectUpdateRequest.getId());
+	}
 }

@@ -41,7 +41,7 @@ public class SubjectService {
 	}
 	
 	/**
-	 * 科目情報 主キー検索
+	 * ユーザー情報 主キー検索
 	 * @return  検索結果
 	 */
 	public SubjectEntity findById(Integer id) {
@@ -49,7 +49,7 @@ public class SubjectService {
 	}
 	
 	/**
-	 * 科目情報 更新
+	 * ユーザー情報 更新
 	 * @param  subject 科目情報
 	 */
 	public void update(SubjectForm subjectUpdateRequest) {
@@ -61,7 +61,7 @@ public class SubjectService {
 	}
 	
 	/**
-	 * 科目情報 物理削除
+	 * ユーザー情報 物理削除
 	 * @param  id ID
 	 */
 	public void delete(Integer id) {

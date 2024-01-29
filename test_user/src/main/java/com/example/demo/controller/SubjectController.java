@@ -121,16 +121,16 @@ public class SubjectController {
 			model.addAttribute("validationError", errorList);
 			return "user/edit";
 		}
-		// 科目情報の更新
+		// ユーザー情報の更新
 		subjectService.update(subjectUpdateRequest);
 		return String.format("redirect:/user/%d", subjectUpdateRequest.getId());
 	}
 	
 	/**
-	 * 科目情報削除
+	 * ユーザー情報削除
 	 * @param  id 表示するID
 	 * @param  model Model
-	 * @return  科目情報詳細画面
+	 * @return  ユーザー情報詳細画面
 	 */
 	@GetMapping("/user/{id}/delete")
 	public String subjectDelete(@PathVariable Integer id, Model model) {

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.SubjectEntity;
 
 /**
- * 科目情報 Repository
+ * ユーザー情報 Repository
  */
 @Repository
 public interface SubjectRepository extends JpaRepository<SubjectEntity, Integer> {

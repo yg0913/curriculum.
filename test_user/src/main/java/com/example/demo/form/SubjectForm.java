@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * 科目情報 リクエストデータ
+ * ユーザー情報 リクエストデータ
  */
 @Data
 public class SubjectForm {

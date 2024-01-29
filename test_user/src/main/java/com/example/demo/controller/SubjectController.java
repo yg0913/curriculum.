@@ -70,7 +70,7 @@ public class SubjectController {
 			model.addAttribute("validationError", errorList);
 			return "user/add";
 		}
-		// 科目情報の登録
+		// ユーザー情報の登録
 		subjectService.create(subjectRequest);
 		return "redirect:/user/list";
 	}	

@@ -44,7 +44,7 @@ public class ItemService {
 	}
 	
 	/**
-	 * 科目情報 主キー検索
+	 * 備品情報 主キー検索
 	 * @return  検索結果
 	 */
 	public ItemEntity findById(Integer id) {
@@ -52,12 +52,23 @@ public class ItemService {
 	}
 	
 	/**
-	 * 科目情報 更新
-	 * @param  subject 科目情報
+	 * 備品情報 更新
+	 * @param  item 科目情報
 	 */
 	public void update(ItemForm itemUpdateRequest) {
 		ItemEntity item = findById(itemUpdateRequest.getId());
-		item.setItemName(itemUpdateRequest.getSubject());
-		subjectRepository.save(subject);
+		item.setItemName(itemUpdateRequest.getItemName());
+		item.setStock(itemUpdateRequest.getStock());
+		item.setName(itemUpdateRequest.getName());
+		itemRepository.save(item);
+	}
+	
+	/**
+	 * 備品情報 物理削除
+	 * @param  id ID
+	 */
+	public void delete(Integer id) {
+		ItemEntity item = findById(id);
+		itemRepository.delete(item);
 	}
 }

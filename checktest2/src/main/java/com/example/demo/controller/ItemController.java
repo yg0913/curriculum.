@@ -120,11 +120,25 @@ public class ItemController {
 			for (ObjectError error : result.getAllErrors()) {
 				errorList.add(error.getDefaultMessage());
 			}
+			model.addAttribute("itemUpdateRequest", new ItemForm());
 			model.addAttribute("validationError", errorList);
 			return "item/edit";
 		}
 		// 備品情報の更新
 		itemService.update(itemUpdateRequest);
 		return String.format("redirect:/item/%d", itemUpdateRequest.getId());
+	}
+	
+	/**
+	 * 備品情報削除
+	 * @param  id 表示するID
+	 * @param  model Model
+	 * @return  備品情報詳細画面
+	 */
+	@GetMapping("/item/{id}/delete")
+	public String itemDelete(@PathVariable Integer id, Model model) {
+		// 備品情報の削除
+		itemService.delete(id);
+		return "redirect:/item/list";
 	}
 }
